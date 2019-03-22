@@ -59,8 +59,19 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
-
-
+// The U in CRUD
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+    
+    projectdb
+    .update(id, changes)
+    .then(updated => {
+            res.status(200).json({ success: true, updated });
+    })
+    .catch (({ code, message }) => {
+        res.status(code).json({ success: false, message });
+    });
+});
 
 module.exports = router;
