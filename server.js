@@ -13,7 +13,7 @@ server.use('/api/project', projectRouter);
 
 // routes
 server.get('/', (req, res) => {
-    res.send('BEEP BOOP SERVER STATUS: ALIVE');
+    res.send('test BEEP BOOP SERVER STATUS: ALIVE');
 });
 
 module.exports = server; // exporting the server
