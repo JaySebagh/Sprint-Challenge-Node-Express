@@ -44,4 +44,23 @@ router.post('/', (req, res) => {
     });
 });
 
+// The D in CRUD
+// Generally use status 204 for delete, in this case I'm using 200 to return a message.
+router.delete('/:id', (req, res) => {
+    const projectId = req.params.id;
+
+    projectdb
+    .remove(projectId)
+    .then(deleted => {
+            res.status(200).json({ success: true, message: 'you deleted!'});
+    })
+    .catch(({ code, message }) => {
+        res.status(code).json({ success: false, message: "The projects could not be removed" });
+    });
+});
+
+
+
+
+
 module.exports = router;
