@@ -17,3 +17,16 @@ router.get('/', (req, res) => {
 })
 
 module.exports = router;
+
+// The C in CRUD
+router.post('/', (req, res) => {
+    const action = req.body;
+    actiondb
+    .insert(action)
+    .then(action => {
+            res.status(201).json({ success: true, action });
+    })
+    .catch(message => {
+        res.status(500).json({ success: false, message: "There was an error while saving the action to the database"  });
+    });
+});

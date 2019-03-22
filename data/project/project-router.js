@@ -31,4 +31,17 @@ router.get('/:id', (req, res) => {
         });
 })
 
+// The C in CRUD
+router.post('/', (req, res) => {
+    const project = req.body;
+    projectdb
+    .insert(project)
+    .then(project => {
+            res.status(201).json({ success: true, project });
+    })
+    .catch(message => {
+        res.status(500).json({ success: false, message: "There was an error while saving the project to the database"  });
+    });
+});
+
 module.exports = router;
